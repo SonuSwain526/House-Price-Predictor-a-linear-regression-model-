@@ -21,7 +21,7 @@ if not (os.path.exists(MODEL)):
     data = pd.read_csv("housing.csv")
 
     def devidedata(data, pct):
-        data["income_Cat"] = pd.cut(data["median_income"], bins=[0, 1.5, 3.0, 4.5, 6.0, np.Infinity], labels=[1,2,3,4,5])
+        data["income_Cat"] = pd.cut(data["median_income"], bins=[0, 1.5, 3.0, 4.5, 6.0, np.inf], labels=[1,2,3,4,5])
         split = StratifiedShuffleSplit(n_splits=1, test_size=pct,random_state=42)
 
         for train_ix, test_ix in split.split(data, data["income_Cat"]):
@@ -88,4 +88,5 @@ else:
     mae = mean_absolute_error(pd.read_csv("input1.csv")["median_house_value"], predictions)
 
     print(math.sqrt(mse), mae, r2_score(pd.read_csv("input1.csv")["median_house_value"], predictions))
+
 
